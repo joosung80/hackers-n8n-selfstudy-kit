@@ -1,0 +1,193 @@
+{
+  "name": "03. Hacker News RSS — 최신 5개만",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a1f0c003-0000-4000-8000-000000000001",
+      "name": "수동 실행"
+    },
+    {
+      "parameters": {
+        "url": "https://news.ycombinator.com/rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "a1f0c003-0000-4000-8000-000000000002",
+      "name": "HN RSS 읽기"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        480,
+        0
+      ],
+      "id": "a1f0c003-0000-4000-8000-000000000003",
+      "name": "상위 5개 제한"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "r2",
+              "name": "link",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "r3",
+              "name": "comments",
+              "value": "={{ $json.comments }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        0
+      ],
+      "id": "a1f0c003-0000-4000-8000-000000000004",
+      "name": "필드 정리 (title, link)"
+    },
+    {
+      "parameters": {
+        "content": "## 🗞️ 03. 뉴스 5개만 골라오기\n\n**수집 → 제어 → 가공** 파이프라인\n\n**따라하기**\n1. **Execute workflow** 클릭\n2. 선 위 숫자 **1 → 30 → 5 → 5 items** 확인\n3. `상위 5개 제한` 노드 열기 → OUTPUT **Table** 탭\n\n💡 완성 후 수동 실행을 **Schedule Trigger** 로 바꾸면 매일 자동!",
+        "height": 400,
+        "width": 400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        -120
+      ],
+      "id": "3cb960e6-2def-5a07-bb3e-e1de134b4471",
+      "name": "설명 · 전체"
+    },
+    {
+      "parameters": {
+        "content": "### ① 수동 실행\n내가 누르는 **시작 버튼**\n(Schedule = 알람시계, Webhook = 초인종)",
+        "height": 260,
+        "width": 240
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -300
+      ],
+      "id": "319e6d94-30d0-5684-9786-41b84ba3aa65",
+      "name": "설명 · 수동"
+    },
+    {
+      "parameters": {
+        "content": "### ② RSS 읽기\n`https://news.ycombinator.com/rss`\n신문 정기구독 📰\nXML 을 JSON 상자 **30개**로 바꿔 줌",
+        "height": 260,
+        "width": 240
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -300
+      ],
+      "id": "1831169b-1e43-5920-b931-804fd9f92cea",
+      "name": "설명 · RSS"
+    },
+    {
+      "parameters": {
+        "content": "### ③ 상위 5개 제한 (Limit)\n벨트 위 **검수원** 🚧\n앞에서 **5개만** 통과",
+        "height": 260,
+        "width": 240
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        440,
+        -300
+      ],
+      "id": "26be3b15-f6d8-55ee-aec4-530ef3ce0a51",
+      "name": "설명 · Limit"
+    },
+    {
+      "parameters": {
+        "content": "### ④ 필드 정리 (Edit Fields)\n**재포장** 🎁\n`{{ $json.title }}` · `{{ $json.link }}` 만 남김",
+        "height": 260,
+        "width": 240
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        680,
+        -300
+      ],
+      "id": "3499ef45-975c-543d-bce7-267a6cc7aabf",
+      "name": "설명 · Set"
+    }
+  ],
+  "connections": {
+    "수동 실행": {
+      "main": [
+        [
+          {
+            "node": "HN RSS 읽기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HN RSS 읽기": {
+      "main": [
+        [
+          {
+            "node": "상위 5개 제한",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "상위 5개 제한": {
+      "main": [
+        [
+          {
+            "node": "필드 정리 (title, link)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

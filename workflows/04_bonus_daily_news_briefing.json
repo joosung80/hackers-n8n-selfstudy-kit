@@ -1,0 +1,188 @@
+{
+  "name": "04. [보너스] 매일 아침 뉴스 브리핑",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b0000004-0000-4000-8000-000000000001",
+      "name": "매일 08:00"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ],
+      "id": "b0000004-0000-4000-8000-000000000002",
+      "name": "수동 실행 (테스트용)"
+    },
+    {
+      "parameters": {
+        "url": "https://news.ycombinator.com/rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        100
+      ],
+      "id": "b0000004-0000-4000-8000-000000000003",
+      "name": "뉴스 RSS 읽기"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        500,
+        100
+      ],
+      "id": "b0000004-0000-4000-8000-000000000004",
+      "name": "상위 5개"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 5개 상자(아이템)를 메시지 한 통으로 합치기\nconst lines = $input.all().map((item, i) => `${i + 1}. ${item.json.title}\\n   ${item.json.link}`);\nconst today = $now.setZone('Asia/Seoul').toFormat('yyyy-MM-dd');\nreturn [{ json: { message: `📰 오늘의 Hacker News TOP 5 (${today})\\n\\n` + lines.join('\\n') } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        100
+      ],
+      "id": "b0000004-0000-4000-8000-000000000005",
+      "name": "메시지 한 통으로 합치기"
+    },
+    {
+      "parameters": {
+        "content": "## 🎁 04. 매일 아침 뉴스 브리핑 (보너스)\n\n3교시 워크플로우를 **진짜 업무 자동화**로 완성한 버전\n\n**따라하기**\n1. `수동 실행` 으로 먼저 테스트 → 마지막 노드에 `message` 확인\n2. 마지막 노드 뒤 `+` → **Gmail / Telegram / Slack** 중 하나 추가 → 내용에 `{{ $json.message }}`\n3. **Publish** → 매일 08:00 자동 발송\n\n💡 RSS 주소를 조선·해양 / 해운 / 정부 공고 RSS 로 바꿔 보세요.",
+        "height": 460,
+        "width": 420,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -160
+      ],
+      "id": "3cb960e6-2def-5a07-bb3e-e1de134b4471",
+      "name": "설명 · 전체"
+    },
+    {
+      "parameters": {
+        "content": "### ⏰ 트리거 2개\n- **매일 08:00** (알람시계)\n- **수동 실행** (테스트 버튼)\n둘 다 같은 RSS 노드로 연결",
+        "height": 240,
+        "width": 240
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -300
+      ],
+      "id": "a5309716-ae82-5e08-80d0-dea2e10f1d5f",
+      "name": "설명 · 트리거"
+    },
+    {
+      "parameters": {
+        "content": "### 🧩 Code 노드\n상자 5개 → 메시지 **1통**\n번호 · 제목 · 링크로 정리\n(코드를 몰라도 그대로 사용 OK)",
+        "height": 240,
+        "width": 260
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        700,
+        -300
+      ],
+      "id": "feba69b9-9512-56f2-b967-b1651d992129",
+      "name": "설명 · 코드"
+    },
+    {
+      "parameters": {
+        "content": "### ➡️ 여기에 이어 붙이기\nGmail · Telegram · Slack · 카카오워크(웹훅) …\n메시지 칸: `{{ $json.message }}`",
+        "height": 200,
+        "width": 260,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        60
+      ],
+      "id": "ac8a2813-82cc-59a7-bb2a-61f889b3afba",
+      "name": "설명 · 다음"
+    }
+  ],
+  "connections": {
+    "매일 08:00": {
+      "main": [
+        [
+          {
+            "node": "뉴스 RSS 읽기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "수동 실행 (테스트용)": {
+      "main": [
+        [
+          {
+            "node": "뉴스 RSS 읽기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "뉴스 RSS 읽기": {
+      "main": [
+        [
+          {
+            "node": "상위 5개",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "상위 5개": {
+      "main": [
+        [
+          {
+            "node": "메시지 한 통으로 합치기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Seoul"
+  },
+  "pinData": {}
+}

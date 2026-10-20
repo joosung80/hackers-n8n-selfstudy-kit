@@ -1,0 +1,18 @@
+### 1교시 실습 — n8n Webhook(POST) 테스트
+# Cursor / VS Code 확장 "REST Client"(humao.rest-client) 설치 후
+# 아래 "Send Request" 를 클릭하세요.
+# ⚠️ 테스트 URL(webhook-test)은 n8n 화면에서 "Listen for test event" 를 누른 뒤 1회만 받습니다.
+
+@n8n = https://<내-n8n-주소>
+
+### (1) 테스트 URL — 편집기에서 실행 결과(OUTPUT)를 볼 때
+POST {{n8n}}/webhook-test/hackers-words
+Content-Type: application/json
+
+{ "words": ["고양이", "커피", "회의"] }
+
+### (2) 프로덕션 URL — 워크플로우를 Publish(활성화)한 뒤 상시 호출
+POST {{n8n}}/webhook/hackers-words
+Content-Type: application/json
+
+{ "words": ["고양이", "커피", "회의"] }

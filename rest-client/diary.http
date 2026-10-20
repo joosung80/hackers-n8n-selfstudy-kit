@@ -1,0 +1,7 @@
+### 2교시 보조 — 다이어리 웹훅을 직접 호출해 보기 (웹페이지 없이 n8n 쪽만 먼저 확인)
+@n8n = https://<내-n8n-주소>
+
+POST {{n8n}}/webhook/hackers-diary
+Content-Type: application/json
+
+{ "title": "오늘의 일기", "content": "REST Client 로 먼저 보내 봤다." }
