@@ -60,7 +60,16 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 3. 브라우저에서 `http://localhost:5678` → 관리자 계정 만들기
 > ⚠️ 내 PC 의 n8n 은 **인터넷에서 보이지 않아서**, 실습 02(Vercel → n8n)는 n8n Cloud 로 하는 것이 가장 쉽습니다.
 
-### 1-2. Hoppscotch — 브라우저 API 도구 (추천)
+### 1-2. ⚡ REST Client Web — 가장 쉬운 방법 (추천)
+1. https://hackers-rest-client.vercel.app 접속 (설치·로그인 없음)
+2. 오른쪽 위 **⚙️ 설정 → 내 n8n 주소** 입력 → 저장 (예제의 `{{n8n}}` 에 자동 적용)
+3. 왼쪽 `1교시 · n8n Webhook` → 요청 위 **▶ Send Request**
+4. 서버가 대신 보내 주므로 **CORS 걱정 없음**. 내 PC(localhost) n8n 이면 ⚙️ 설정에서 **브라우저 직접** 으로.
+
+![REST Client Web](../images/rcw_main.jpg)
+![설정](../images/rcw_settings.jpg)
+
+### 1-2a. Hoppscotch — 브라우저 API 도구
 1. https://hoppscotch.io 접속 (설치 없음) → **Login**(구글 등) 하면 요청이 **Personal Workspace** 에 저장
 2. 강의 시나리오 7개 가져오기: [`hoppscotch/README.md`](../hoppscotch/README.md) — **Import from Hoppscotch** → 컬렉션 변수 `n8n`, `diary_web` 을 내 주소로
 3. **워크스페이스 · 컬렉션** = 요청을 담는 서랍(컬렉션)과 칸막이(폴더). Export 하면 파일 1개로 남과 나눌 수 있습니다.
