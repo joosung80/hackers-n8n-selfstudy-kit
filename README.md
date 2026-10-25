@@ -12,6 +12,7 @@
 | 📘 [`manual/self-study-manual.md`](manual/self-study-manual.md) | **셀프 실습 매뉴얼** — 환경 준비부터 실습 1·2·3·보너스, 문제 해결까지 |
 | 📕 [`manual/lecture-slides.pdf`](manual/lecture-slides.pdf) | 강의자료 PDF (그림으로 보는 API · URL · GET/POST · 상태코드 · JSON · Webhook) |
 | ⚙️ [`workflows/`](workflows/) | n8n 에 바로 가져오는 워크플로우 4개 — **노드마다 한국어 설명 메모** 포함 |
+| 📨 [`hoppscotch/`](hoppscotch/) | **Hoppscotch 컬렉션** — 강의 시나리오 7개를 브라우저 도구로 바로 Import (변수 2개만 바꾸면 끝) |
 | 📨 [`rest-client/`](rest-client/) | 웹훅에 JSON 을 보내는 파일 (`.http` · Mac/Linux `curl.sh` · Windows `curl.ps1`) |
 | 🌐 [`diary-web/`](diary-web/) | 2교시 웹 다이어리 (Next.js) 소스 |
 | 🖼️ [`images/`](images/) | 개념 그림 7장 + 정답 화면 |

@@ -1,0 +1,243 @@
+{
+  "v": 12,
+  "name": "n8n 업무자동화 실습 (셀프 학습 키트)",
+  "folders": [
+    {
+      "v": 12,
+      "name": "1교시 · Webhook",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "endpoint": "<<n8n>>/webhook-test/hackers-words",
+          "name": "1-1 테스트 URL로 words 보내기 (먼저 n8n Listen!)",
+          "params": [],
+          "headers": [],
+          "method": "POST",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": "application/json",
+            "body": "{ \"words\": [\"고양이\", \"커피\", \"회의\"] }"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "endpoint": "<<n8n>>/webhook/hackers-words",
+          "name": "1-2 운영 URL로 words 보내기 (Publish 상태면 항상 OK)",
+          "params": [],
+          "headers": [],
+          "method": "POST",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": "application/json",
+            "body": "{ \"words\": [\"고양이\", \"커피\", \"회의\"] }"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "endpoint": "<<n8n>>/webhook/hackers-words?word=고양이&count=1",
+          "name": "1-3 GET + 쿼리로 보내보기 (404 체험 · POST 전용 창구)",
+          "params": [],
+          "headers": [],
+          "method": "GET",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "name": "2교시 · 다이어리",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "endpoint": "<<n8n>>/webhook/hackers-diary",
+          "name": "2-1 n8n 다이어리 웹훅 직접 호출 (응답 노드 답장 확인)",
+          "params": [],
+          "headers": [],
+          "method": "POST",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": "application/json",
+            "body": "{ \"title\": \"오늘의 일기\", \"content\": \"Hoppscotch 로 n8n 에 바로 보내 봤다.\" }"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "endpoint": "<<diary_web>>/api/diary",
+          "name": "2-2 안내데스크 /api/diary 호출 (CORS → Proxy)",
+          "params": [],
+          "headers": [],
+          "method": "POST",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": "application/json",
+            "body": "{ \"title\": \"안내데스크 경유\", \"content\": \"Vercel API Route 를 거쳐 n8n 으로!\" }"
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "name": "3교시 · RSS",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "endpoint": "https://news.ycombinator.com/rss",
+          "name": "3-1 Hacker News RSS 원본 보기 (XML · CORS → Proxy)",
+          "params": [],
+          "headers": [],
+          "method": "GET",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        },
+        {
+          "v": "17",
+          "endpoint": "https://hn.algolia.com/api/v1/search",
+          "name": "3-2 HN 검색 API · GET 쿼리 파라미터 (n8n 기사 5개)",
+          "params": [
+            {
+              "key": "query",
+              "value": "n8n",
+              "active": true,
+              "description": ""
+            },
+            {
+              "key": "tags",
+              "value": "story",
+              "active": true,
+              "description": ""
+            },
+            {
+              "key": "hitsPerPage",
+              "value": "5",
+              "active": true,
+              "description": ""
+            }
+          ],
+          "headers": [],
+          "method": "GET",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "preRequestScript": "",
+          "testScript": "",
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {},
+          "description": null
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    }
+  ],
+  "requests": [],
+  "headers": [],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "variables": [
+    {
+      "key": "n8n",
+      "initialValue": "https://내-n8n-주소",
+      "currentValue": "",
+      "secret": false
+    },
+    {
+      "key": "diary_web",
+      "initialValue": "https://내-다이어리.vercel.app",
+      "currentValue": "",
+      "secret": false
+    }
+  ],
+  "description": "",
+  "preRequestScript": "",
+  "testScript": ""
+}

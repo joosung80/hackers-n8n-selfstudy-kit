@@ -60,7 +60,15 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 3. 브라우저에서 `http://localhost:5678` → 관리자 계정 만들기
 > ⚠️ 내 PC 의 n8n 은 **인터넷에서 보이지 않아서**, 실습 02(Vercel → n8n)는 n8n Cloud 로 하는 것이 가장 쉽습니다.
 
-### 1-2. Cursor + REST Client
+### 1-2. Hoppscotch — 브라우저 API 도구 (추천)
+1. https://hoppscotch.io 접속 (설치 없음) → **Login**(구글 등) 하면 요청이 **Personal Workspace** 에 저장
+2. 강의 시나리오 7개 가져오기: [`hoppscotch/README.md`](../hoppscotch/README.md) — **Import from Hoppscotch** → 컬렉션 변수 `n8n`, `diary_web` 을 내 주소로
+3. **워크스페이스 · 컬렉션** = 요청을 담는 서랍(컬렉션)과 칸막이(폴더). Export 하면 파일 1개로 남과 나눌 수 있습니다.
+4. 💡 `Network Error` 가 나면 **CORS** — 왼쪽 ⚙️ **Settings → Interceptor → Proxy** (자세한 설명은 hoppscotch/README.md 4장)
+
+![Hoppscotch 로 보낸 화면](../images/hopp_01_test_sent.jpg)
+
+### 1-2b. (선택) Cursor + REST Client
 1. https://cursor.com 에서 Cursor 설치 (VS Code 도 OK)
 2. 왼쪽 **확장(Extensions)** → `REST Client` 검색 → 작성자 **Huachao Mao** → Install
 3. `.http` 파일을 열면 요청 위에 **Send Request** 글자가 생깁니다.
@@ -86,9 +94,9 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 
 1. **Webhook** 노드 더블클릭 → HTTP Method **POST**, Path **hackers-words** 확인
 2. **Test URL** 복사 (`…/webhook-test/hackers-words`)
-3. [`rest-client/webhook.http`](../rest-client/webhook.http) 를 Cursor 로 열고 `@n8n = ` 뒤에 내 n8n 주소 입력
-4. n8n 에서 **Listen for test event** 클릭 (🔔 초인종 켜기)
-5. Cursor 에서 **(1) 테스트 URL** 위의 **Send Request** 클릭
+3. Hoppscotch 컬렉션 `1-1 테스트 URL로 words 보내기` 열기 (변수 `n8n` 을 내 주소로 바꿔 둔 상태) — 또는 [`rest-client/webhook.http`](../rest-client/webhook.http) 를 Cursor 로 열고 `@n8n = ` 뒤에 내 주소
+4. n8n 에서 **Listen for test event** 클릭 (🔔 초인종 켜기) — **Send 보다 먼저!**
+5. Hoppscotch **Send** (또는 Cursor 의 **Send Request**) → `200 OK`
 6. OUTPUT → **Schema** → `body › words` 에 **고양이 · 커피 · 회의** ✅
 
 ![정답 1](../images/answer1_webhook_output.jpg)
@@ -103,6 +111,7 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 | `404 … webhook is not registered` | **Listen for test event** 를 다시 누르고 재전송 (테스트 URL 은 1번만 받음) |
 | words 가 안 보임 | `Content-Type: application/json` 줄과 JSON 사이 **빈 줄** 확인 |
 | JSON 오류 | 마지막 쉼표 · 작은따옴표 → 큰따옴표 |
+| Hoppscotch `Network Error` | 주소 확인 → CORS 면 Settings → Interceptor **Proxy** |
 | Send Request 가 안 보임 | REST Client 설치 · 파일 확장자 `.http` |
 
 ---
