@@ -159,8 +159,8 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 > **Next.js 가 뭐예요?** 화면과 서버(안내데스크)를 한 프로젝트에 담는 **웹사이트 조립 키트**예요. 페이지 1~2장이면 🚲 심플 버전으로 충분하고, 페이지가 많아지고 로그인·DB 를 붙일 때 🚗 Next.js 가 편해집니다. 두 버전 모두 **폴더 위치 = 웹 주소**(`api/diary` → `/api/diary`) 규칙은 같아요.
 
 ### 3-3. (선택) ChatGPT 에게 직접 만들어 달라고 하기
-[`prompts/`](../prompts/) 의 **7문장 요청서**를 ChatGPT · Claude · Gemini 에 그대로 붙여 넣으세요 — [심플](../prompts/diary-simple-prompt.md) · [Next.js](../prompts/diary-nextjs-prompt.md).
-받은 코드는 GitHub **New repository → Add file → Create new file** (파일 이름에 `api/diary.js` 처럼 쓰면 폴더가 생김) → Vercel Import → 환경변수 → Deploy.
+[`prompts/`](../prompts/) 의 **4~5문장 요청서**를 붙여 넣고 마지막 줄의 n8n 주소만 내 것으로 — [심플](../prompts/diary-simple-prompt.md) · [Next.js](../prompts/diary-nextjs-prompt.md).
+핵심은 **목적 · 보낼 것(title · content) · 주소 · "환경변수로 설정할 거야"** 네 가지. 받은 코드는 GitHub **New repository → Add file → Create new file** → Vercel Import → AI 가 알려 준 환경변수 → Deploy.
 
 **더 해 보기**
 - n8n 의 `다이어리 정리` 뒤에 **Google Sheets → Append row** 를 붙이면 진짜 일기장이 됩니다.

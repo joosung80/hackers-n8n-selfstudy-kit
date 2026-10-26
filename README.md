@@ -17,7 +17,7 @@
 | 📨 [`rest-client/`](rest-client/) | 웹훅에 JSON 을 보내는 파일 (`.http` · Mac/Linux `curl.sh` · Windows `curl.ps1`) |
 | 🚲 [`diary-simple/`](diary-simple/) | 2교시 웹 다이어리 **심플 버전** — 파일 2개 (HTML + Vercel 함수), Deploy 버튼 |
 | 🌐 [`diary-web/`](diary-web/) | 2교시 웹 다이어리 Next.js 버전 소스 |
-| 🤖 [`prompts/`](prompts/) | ChatGPT 에 붙여 넣는 **7문장 요청서** (심플 · Next.js) |
+| 🤖 [`prompts/`](prompts/) | ChatGPT 에 붙여 넣는 **4~5문장 요청서** (심플 · Next.js) |
 | 🖼️ [`images/`](images/) | 개념 그림 7장 + 정답 화면 |
 
 강의 웹페이지: **https://hackers-n8n-lecture.vercel.app**
