@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>웹 다이어리</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f6f5f2; color: #222; }
+    main { max-width: 640px; margin: 48px auto; padding: 0 16px; }
+    h1 { margin: 0 0 4px; font-size: 28px; }
+    .sub { margin: 0 0 24px; color: #666; font-size: 14px; }
+    form { display: flex; flex-direction: column; gap: 8px; background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    label { font-weight: 600; font-size: 14px; margin-top: 8px; }
+    input, textarea { font: inherit; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; }
+    button { margin-top: 16px; padding: 12px; font: inherit; font-weight: 700; color: #fff; background: #ea4b71; border: 0; border-radius: 8px; cursor: pointer; }
+    button:disabled { opacity: .6; }
+    #result { margin-top: 16px; padding: 14px 16px; border-radius: 8px; font-weight: 600; }
+    #result:empty { display: none; }
+    .ok { background: #e8f7ee; color: #146c3a; }
+    .err { background: #fdecec; color: #a12828; }
+  </style>
+</head>
+<body>
+  <!-- 🪑 홀: 손님이 보는 화면 -->
+  <main>
+    <h1>📔 웹 다이어리</h1>
+    <p class="sub">작성한 일기는 안내데스크(/api/diary)를 거쳐 n8n 으로 전달됩니다.</p>
+
+    <form id="diary">
+      <label for="title">제목 (title)</label>
+      <input id="title" placeholder="오늘의 제목" />
+      <label for="content">내용 (content)</label>
+      <textarea id="content" rows="7" placeholder="오늘 있었던 일을 적어보세요"></textarea>
+      <button id="save">저장하기</button>
+    </form>
+    <div id="result" role="status"></div>
+  </main>
+
+  <script>
+    const form = document.getElementById('diary')
+    const button = document.getElementById('save')
+    const result = document.getElementById('result')
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()                       // 페이지 새로고침 막기
+      button.disabled = true
+      button.textContent = '저장 중…'
+      result.textContent = ''
+
+      try {
+        // n8n 이 아니라 우리 안내데스크(/api/diary)로 주문서를 보낸다
+        const res = await fetch('/api/diary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: document.getElementById('title').value,
+            content: document.getElementById('content').value,
+          }),
+        })
+        const data = await res.json()
+        result.className = data.ok ? 'ok' : 'err'
+        result.textContent = (data.ok ? '✅ ' : '⚠️ ') + data.message + (data.ok ? ' · ' + new Date().toLocaleString('ko-KR') : '')
+      } catch {
+        result.className = 'err'
+        result.textContent = '⚠️ 네트워크 오류가 발생했습니다.'
+      } finally {
+        button.disabled = false
+        button.textContent = '저장하기'
+      }
+    })
+  </script>
+</body>
+</html>

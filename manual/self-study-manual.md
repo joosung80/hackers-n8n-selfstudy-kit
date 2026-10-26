@@ -128,7 +128,8 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 ## 3. 실습 02 — 웹 다이어리 → 안내데스크 → n8n
 
 ```
-브라우저(손님) → /api/diary (Next.js 안내데스크) → n8n Webhook (직통번호)
+🪑 화면(브라우저) → 🛎️ /api/diary (안내데스크·서버) → ⚙️ n8n Webhook
+                         🔐 n8n 주소는 금고(환경변수 N8N_WEBHOOK_URL)에
 ```
 
 **가져오기:** `https://raw.githubusercontent.com/joosung80/hackers-n8n-selfstudy-kit/main/workflows/02_diary_webhook.json`
@@ -138,21 +139,28 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 2. **Webhook** 노드 → **Production URL** 복사 (`…/webhook/hackers-diary`, `-test` 없는 것!)
 3. (선택) [`rest-client/diary.http`](../rest-client/diary.http) 로 먼저 보내 보고 `저장 완료` 답장 확인
 
-### 3-2. 웹 쪽 (코드 수정 없음)
-1. https://github.com/joosung80/hackers-n8n-diary-template → **Use this template → Create a new repository**
-2. https://vercel.com → **Add New… → Project** → 방금 만든 저장소 **Import**
-3. **Environment Variables**: Key `N8N_WEBHOOK_URL` · Value = 3-1 에서 복사한 Production URL
-4. **Deploy** → 도메인 클릭 → 제목·내용 입력 → **저장하기** → **✅ 저장 완료**
-5. n8n **Executions** 탭에 내 일기 도착 확인
+### 3-2. 웹 쪽 — 둘 중 하나 (화면은 똑같아요)
+
+| | 🚲 심플 버전 (추천) | 🚗 Next.js 버전 |
+|---|---|---|
+| 코드 | [`diary-simple/`](../diary-simple/) — 파일 **2개** | [`diary-web/`](../diary-web/) — 6개 + 설정 |
+| 화면 | `index.html` | `app/page.tsx` |
+| 안내데스크 | `api/diary.js` | `app/api/diary/route.ts` |
+| 배포 | [diary-simple README](../diary-simple/README.md) 의 **Deploy** 버튼 | [템플릿 저장소](https://github.com/joosung80/hackers-n8n-diary-template) → Use this template → Vercel Import |
+
+1. Deploy 버튼(또는 Vercel **Add New… → Project → Import**)
+2. **N8N_WEBHOOK_URL** = 3-1 에서 복사한 Production URL
+3. **Deploy** → 도메인 클릭 → 제목·내용 입력 → **저장하기** → **✅ 저장 완료**
+4. n8n **Executions** 탭에 내 일기 도착 확인
 
 ![정답 2](../images/answer2_vercel_saved.jpg)
 ![n8n 수신](../images/answer2_n8n_execution.jpg)
 
-**코드 들여다보기** ([`diary-web/`](../diary-web/))
-| 파일 | 주소 | 역할 |
-|---|---|---|
-| `app/page.tsx` | `/` | 🪑 홀 — 입력 폼, `fetch('/api/diary')` 만 호출 |
-| `app/api/diary/route.ts` | `/api/diary` | 🛎️ 안내데스크 — 빈칸 검사 → 금고(`process.env.N8N_WEBHOOK_URL`)에서 주소 꺼내 n8n 으로 전달 |
+> **Next.js 가 뭐예요?** 화면과 서버(안내데스크)를 한 프로젝트에 담는 **웹사이트 조립 키트**예요. 페이지 1~2장이면 🚲 심플 버전으로 충분하고, 페이지가 많아지고 로그인·DB 를 붙일 때 🚗 Next.js 가 편해집니다. 두 버전 모두 **폴더 위치 = 웹 주소**(`api/diary` → `/api/diary`) 규칙은 같아요.
+
+### 3-3. (선택) ChatGPT 에게 직접 만들어 달라고 하기
+[`prompts/`](../prompts/) 의 **7문장 요청서**를 ChatGPT · Claude · Gemini 에 그대로 붙여 넣으세요 — [심플](../prompts/diary-simple-prompt.md) · [Next.js](../prompts/diary-nextjs-prompt.md).
+받은 코드는 GitHub **New repository → Add file → Create new file** (파일 이름에 `api/diary.js` 처럼 쓰면 폴더가 생김) → Vercel Import → 환경변수 → Deploy.
 
 **더 해 보기**
 - n8n 의 `다이어리 정리` 뒤에 **Google Sheets → Append row** 를 붙이면 진짜 일기장이 됩니다.
@@ -162,7 +170,8 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 |---|---|
 | N8N_WEBHOOK_URL 환경변수가 없습니다 | Vercel → Settings → Environment Variables 추가 → **Deployments → ⋯ → Redeploy** |
 | n8n 응답 오류 (HTTP 404) | Production URL 인지, n8n **Publish** 했는지 |
-| 빌드 실패 (Vulnerable Next.js) | 직접 만든 프로젝트라면 `npm i next@15` |
+| 저장하면 404 (심플) | `api` 폴더가 저장소 맨 위에 있는지 |
+| 빌드 실패 (Vulnerable Next.js) | `package.json` 의 `next` 를 최신 15 (예: `15.5.28`) 로 |
 
 ---
 
