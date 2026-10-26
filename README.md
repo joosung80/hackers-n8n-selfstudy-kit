@@ -42,6 +42,7 @@
 | 1 · Webhook 초인종 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/과제1-webhook-초인종.mp4 |
 | 2 · 웹 다이어리 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/과제2-웹다이어리.mp4 |
 | 3 · 뉴스 5개만 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/과제3-뉴스5개.mp4 |
+| 🎁 보너스 · 매일 아침 뉴스 브리핑 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/보너스-매일아침-뉴스브리핑.mp4 |
 
 ## 🧭 추천 학습 순서
 
