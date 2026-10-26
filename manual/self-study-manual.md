@@ -161,6 +161,7 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 ### 3-3. (선택) ChatGPT 에게 직접 만들어 달라고 하기
 [`prompts/`](../prompts/) 의 **4~5문장 요청서**를 붙여 넣고 마지막 줄의 n8n 주소만 내 것으로 — [심플](../prompts/diary-simple-prompt.md) · [Next.js](../prompts/diary-nextjs-prompt.md).
 핵심은 **목적 · 보낼 것(title · content) · 주소 · "환경변수로 설정할 거야"** 네 가지. 받은 코드는 GitHub **New repository → Add file → Create new file** → Vercel Import → AI 가 알려 준 환경변수 → Deploy.
+AI 가 만든 사이트는 성공 문구가 "저장되었습니다!" 처럼 다를 수 있어요 — 저장 후 n8n **Executions** 에 도착했으면 성공입니다.
 
 **더 해 보기**
 - n8n 의 `다이어리 정리` 뒤에 **Google Sheets → Append row** 를 붙이면 진짜 일기장이 됩니다.
@@ -171,7 +172,7 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 | N8N_WEBHOOK_URL 환경변수가 없습니다 | Vercel → Settings → Environment Variables 추가 → **Deployments → ⋯ → Redeploy** |
 | n8n 응답 오류 (HTTP 404) | Production URL 인지, n8n **Publish** 했는지 |
 | 저장하면 404 (심플) | `api` 폴더가 저장소 맨 위에 있는지 |
-| 빌드 실패 (Vulnerable Next.js) | `package.json` 의 `next` 를 최신 15 (예: `15.5.28`) 로 |
+| 빌드 실패 (Vulnerable Next.js) | `package.json` 의 `next` 를 최신 버전으로 (AI 로 만들었다면 "Next.js 최신 버전으로 고쳐 줘") |
 
 ---
 
