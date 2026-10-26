@@ -26,14 +26,12 @@
 ## 02 · 웹 다이어리 수신 — `02_diary_webhook.json`
 
 ```
-[Webhook POST /hackers-diary] → [다이어리 정리] → [응답 보내기]
+[Webhook POST /hackers-diary]
 ```
 
 | 노드 | 하는 일 |
 |---|---|
-| **Webhook** | 다이어리 웹의 `/api/diary` 가 보내는 글을 받음 (Respond: 응답 노드 사용) |
-| **다이어리 정리** | title · content · 받은 시각 `receivedAt` 정리 |
-| **응답 보내기** | 웹페이지에 `{ ok: true, message: "저장 완료" }` 답장 |
+| **Webhook** | 다이어리 웹의 `/api/diary` 가 보내는 글(title · content)을 받음 · Respond 기본값 *Immediately* |
 
 - 짝꿍 웹: [`diary-web/`](../diary-web/) 또는 템플릿 https://github.com/joosung80/hackers-n8n-diary-template
 - ⚠️ **Publish(활성화)** 후 **Production URL** (`/webhook/…`) 을 Vercel 환경변수 `N8N_WEBHOOK_URL` 에
@@ -42,7 +40,7 @@
 ## 03 · Hacker News 5개만 — `03_hn_rss_limit.json`
 
 ```
-[수동 실행] → [HN RSS 읽기 (30)] → [상위 5개 제한 (5)] → [필드 정리 title·link]
+[수동 실행] → [HN RSS 읽기 (30)] → [상위 5개 제한 (5)]
 ```
 
 | 노드 | 하는 일 |
@@ -50,7 +48,6 @@
 | **수동 실행** | 내가 누르는 시작 버튼 |
 | **HN RSS 읽기** | `https://news.ycombinator.com/rss` → 기사 상자 30개 |
 | **상위 5개 제한** (Limit) | 앞에서 5개만 통과 |
-| **필드 정리** (Edit Fields) | `{{ $json.title }}`, `{{ $json.link }}` 만 남김 |
 
 - Raw: `https://raw.githubusercontent.com/joosung80/hackers-n8n-selfstudy-kit/main/workflows/03_hn_rss_limit.json`
 

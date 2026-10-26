@@ -5,7 +5,6 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "hackers-diary",
-        "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -20,57 +19,7 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "d1",
-              "name": "title",
-              "value": "={{ $json.body.title }}",
-              "type": "string"
-            },
-            {
-              "id": "d2",
-              "name": "content",
-              "value": "={{ $json.body.content }}",
-              "type": "string"
-            },
-            {
-              "id": "d3",
-              "name": "receivedAt",
-              "value": "={{ $now.toISO() }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        240,
-        0
-      ],
-      "id": "a1f0c002-0000-4000-8000-000000000002",
-      "name": "다이어리 정리"
-    },
-    {
-      "parameters": {
-        "respondWith": "json",
-        "responseBody": "={{ { \"ok\": true, \"message\": \"저장 완료\", \"title\": $json.title, \"receivedAt\": $json.receivedAt } }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [
-        480,
-        0
-      ],
-      "id": "a1f0c002-0000-4000-8000-000000000003",
-      "name": "응답 보내기"
-    },
-    {
-      "parameters": {
-        "content": "## 📔 02. 웹 다이어리 수신\n\n**흐름:** 브라우저 → `/api/diary` (Next.js 안내데스크) → **여기**\n\n**따라하기**\n1. 오른쪽 위 **Publish** (활성화)\n2. Webhook 노드의 **Production URL** 복사\n3. Vercel 환경변수 `N8N_WEBHOOK_URL` 에 붙여넣기 → Redeploy\n4. 다이어리 사이트에서 저장 → **Executions** 탭 확인",
+        "content": "## 📔 02. 웹 다이어리 수신\n\n**흐름:** 브라우저 → `/api/diary` (Next.js 안내데스크) → **여기**\n\n**따라하기**\n1. 오른쪽 위 **Publish** (활성화)\n2. Webhook 노드의 **Production URL** 복사\n3. Vercel 환경변수 `N8N_WEBHOOK_URL` 에 붙여넣기 → Redeploy\n4. 다이어리 사이트에서 저장 → **Executions** 탭 → `body` 에 title · content 도착!",
         "height": 380,
         "width": 400,
         "color": 4
@@ -86,7 +35,7 @@
     },
     {
       "parameters": {
-        "content": "### ① Webhook\n- POST · `hackers-diary`\n- Respond: **Respond to Webhook 노드 사용**\n  → 마지막 노드가 답장을 보냄",
+        "content": "### ① Webhook\n- POST · `hackers-diary`\n- Respond: **Immediately** (기본값)\n  → 받자마자 \"잘 받았어요\" 답장",
         "height": 260,
         "width": 240
       },
@@ -98,62 +47,9 @@
       ],
       "id": "01dc0560-69bf-52af-a878-0fafa1172ee0",
       "name": "설명 · Webhook"
-    },
-    {
-      "parameters": {
-        "content": "### ② 다이어리 정리\n- title, content 꺼내기\n- `receivedAt` = 받은 시각 `{{ $now.toISO() }}`\n\n여기에 구글시트 · 메일 노드를 이어 붙이면 진짜 저장!",
-        "height": 260,
-        "width": 240
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        220,
-        -300
-      ],
-      "id": "a88308b9-8fe5-5e42-ae95-e6803936b048",
-      "name": "설명 · 정리"
-    },
-    {
-      "parameters": {
-        "content": "### ③ 응답 보내기\n웹페이지에 돌려줄 답장(JSON)\n`{ ok: true, message: \"저장 완료\" }`\n→ 화면에 **✅ 저장 완료** 표시",
-        "height": 260,
-        "width": 240
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        460,
-        -300
-      ],
-      "id": "2be2d633-4aa6-5d77-8090-a9388c5cc0d6",
-      "name": "설명 · 응답"
     }
   ],
-  "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "다이어리 정리",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "다이어리 정리": {
-      "main": [
-        [
-          {
-            "node": "응답 보내기",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    }
-  },
+  "connections": {},
   "settings": {
     "executionOrder": "v1"
   },

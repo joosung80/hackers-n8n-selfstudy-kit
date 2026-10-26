@@ -136,7 +136,7 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 ### 3-1. n8n 쪽
 1. 가져온 뒤 오른쪽 위 **Publish**
 2. **Webhook** 노드 → **Production URL** 복사 (`…/webhook/hackers-diary`, `-test` 없는 것!)
-3. (선택) [`rest-client/diary.http`](../rest-client/diary.http) 로 먼저 보내 보고 `저장 완료` 답장 확인
+3. (선택) [`rest-client/diary.http`](../rest-client/diary.http) 로 먼저 보내 보고 `200` · `Workflow was started` 확인
 
 ### 3-2. 웹 쪽 — 과제는 Next.js (심플 버전은 참고)
 
@@ -163,7 +163,7 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 AI 가 만든 사이트는 성공 문구가 "저장되었습니다!" 처럼 다를 수 있어요 — 저장 후 n8n **Executions** 에 도착했으면 성공입니다.
 
 **더 해 보기**
-- n8n 의 `다이어리 정리` 뒤에 **Google Sheets → Append row** 를 붙이면 진짜 일기장이 됩니다.
+- n8n 의 `Webhook` 뒤에 **Google Sheets → Append row** 를 붙이면 진짜 일기장이 됩니다.
 
 ### 🚧 자주 막히는 곳
 | 화면 메시지 | 해결 |
@@ -180,7 +180,7 @@ AI 가 만든 사이트는 성공 문구가 "저장되었습니다!" 처럼 다�
 **가져오기:** `https://raw.githubusercontent.com/joosung80/hackers-n8n-selfstudy-kit/main/workflows/03_hn_rss_limit.json`
 
 1. 하단 **Execute workflow**
-2. 선 위 숫자가 **1 → 30 → 5 → 5 items** 로 바뀌는지 확인
+2. 선 위 숫자가 **1 → 30 → 5 items** 로 바뀌는지 확인
 3. **상위 5개 제한** 노드 더블클릭 → 왼쪽 INPUT 30개 · 오른쪽 OUTPUT **Table** 5줄 ✅
 
 ![정답 3](../images/answer3_limit_ndv.jpg)
@@ -189,7 +189,7 @@ AI 가 만든 사이트는 성공 문구가 "저장되었습니다!" 처럼 다�
 1. `+` → **Manual Trigger**
 2. `+` → **RSS Read** → URL `https://news.ycombinator.com/rss`
 3. `+` → **Limit** → Max Items **5**
-4. `+` → **Edit Fields (Set)** → `title` = `{{ $json.title }}`, `link` = `{{ $json.link }}`
+4. (선택) `+` → **Edit Fields (Set)** → `title` = `{{ $json.title }}`, `link` = `{{ $json.link }}`
    (왼쪽 INPUT 에서 필드를 **끌어다 놓으면** 자동으로 써집니다)
 
 ### 🚧 자주 막히는 곳

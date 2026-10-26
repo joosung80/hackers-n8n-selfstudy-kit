@@ -41,42 +41,7 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "r1",
-              "name": "title",
-              "value": "={{ $json.title }}",
-              "type": "string"
-            },
-            {
-              "id": "r2",
-              "name": "link",
-              "value": "={{ $json.link }}",
-              "type": "string"
-            },
-            {
-              "id": "r3",
-              "name": "comments",
-              "value": "={{ $json.comments }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        720,
-        0
-      ],
-      "id": "a1f0c003-0000-4000-8000-000000000004",
-      "name": "필드 정리 (title, link)"
-    },
-    {
-      "parameters": {
-        "content": "## 🗞️ 03. 뉴스 5개만 골라오기\n\n**수집 → 제어 → 가공** 파이프라인\n\n**따라하기**\n1. **Execute workflow** 클릭\n2. 선 위 숫자 **1 → 30 → 5 → 5 items** 확인\n3. `상위 5개 제한` 노드 열기 → OUTPUT **Table** 탭\n\n💡 완성 후 수동 실행을 **Schedule Trigger** 로 바꾸면 매일 자동!",
+        "content": "## 🗞️ 03. 뉴스 5개만 골라오기\n\n**수집 → 제어** 파이프라인\n\n**따라하기**\n1. **Execute workflow** 클릭\n2. 선 위 숫자 **1 → 30 → 5 items** 확인\n3. `상위 5개 제한` 노드 열기 → OUTPUT **Table** 탭 (title · link 확인)\n\n💡 완성 후 수동 실행을 **Schedule Trigger** 로 바꾸면 매일 자동!",
         "height": 400,
         "width": 400,
         "color": 4
@@ -134,21 +99,6 @@
       ],
       "id": "26be3b15-f6d8-55ee-aec4-530ef3ce0a51",
       "name": "설명 · Limit"
-    },
-    {
-      "parameters": {
-        "content": "### ④ 필드 정리 (Edit Fields)\n**재포장** 🎁\n`{{ $json.title }}` · `{{ $json.link }}` 만 남김",
-        "height": 260,
-        "width": 240
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        680,
-        -300
-      ],
-      "id": "3499ef45-975c-543d-bce7-267a6cc7aabf",
-      "name": "설명 · Set"
     }
   ],
   "connections": {
@@ -168,17 +118,6 @@
         [
           {
             "node": "상위 5개 제한",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "상위 5개 제한": {
-      "main": [
-        [
-          {
-            "node": "필드 정리 (title, link)",
             "type": "main",
             "index": 0
           }
