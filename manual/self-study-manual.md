@@ -138,9 +138,9 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 2. **Webhook** 노드 → **Production URL** 복사 (`…/webhook/hackers-diary`, `-test` 없는 것!)
 3. (선택) [`rest-client/diary.http`](../rest-client/diary.http) 로 먼저 보내 보고 `저장 완료` 답장 확인
 
-### 3-2. 웹 쪽 — 둘 중 하나 (화면은 똑같아요)
+### 3-2. 웹 쪽 — 과제는 Next.js (심플 버전은 참고)
 
-| | 🚲 심플 버전 (추천) | 🚗 Next.js 버전 |
+| | 🚲 심플 버전 (참고) | 🚗 Next.js 버전 (과제) |
 |---|---|---|
 | 코드 | [`diary-simple/`](../diary-simple/) — 파일 **2개** | [`diary-web/`](../diary-web/) — 6개 + 설정 |
 | 화면 | `index.html` | `app/page.tsx` |
@@ -158,7 +158,7 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 > **Next.js 가 뭐예요?** 화면과 서버(안내데스크)를 한 프로젝트에 담는 **웹사이트 조립 키트**예요. 페이지 1~2장이면 🚲 심플 버전으로 충분하고, 페이지가 많아지고 로그인·DB 를 붙일 때 🚗 Next.js 가 편해집니다. 두 버전 모두 **폴더 위치 = 웹 주소**(`api/diary` → `/api/diary`) 규칙은 같아요.
 
 ### 3-3. (선택) ChatGPT 에게 직접 만들어 달라고 하기
-[`prompts/`](../prompts/) 의 **4~5문장 요청서**를 붙여 넣고 마지막 줄의 n8n 주소만 내 것으로 — [심플](../prompts/diary-simple-prompt.md) · [Next.js](../prompts/diary-nextjs-prompt.md).
+[`prompts/`](../prompts/) 의 **4~5문장 요청서**를 붙여 넣고 마지막 줄의 n8n 주소만 내 것으로 — [Next.js (과제)](../prompts/diary-nextjs-prompt.md) · [심플 (참고)](../prompts/diary-simple-prompt.md).
 핵심은 **목적 · 보낼 것(title · content) · 주소 · "환경변수로 설정할 거야"** 네 가지. 받은 코드는 GitHub **New repository → Add file → Create new file** → Vercel Import → AI 가 알려 준 환경변수 → Deploy.
 AI 가 만든 사이트는 성공 문구가 "저장되었습니다!" 처럼 다를 수 있어요 — 저장 후 n8n **Executions** 에 도착했으면 성공입니다.
 

@@ -4,8 +4,8 @@ ChatGPT · Claude · Gemini 에 붙여 넣고, 마지막 줄의 **n8n 주소만 
 
 | 파일 | 만들어지는 것 |
 |---|---|
-| [`diary-simple-prompt.md`](diary-simple-prompt.md) | 🚲 심플 버전 (HTML + Vercel 함수) — 4문장 |
-| [`diary-nextjs-prompt.md`](diary-nextjs-prompt.md) | 🚗 Next.js 버전 — 5문장 ("최신 버전" 한 줄 추가) |
+| [`diary-nextjs-prompt.md`](diary-nextjs-prompt.md) | 🚗 **Next.js 버전 (과제용)** — 5문장 |
+| [`diary-simple-prompt.md`](diary-simple-prompt.md) | 🚲 심플 버전 (참고 · HTML + Vercel 함수) — 4문장 |
 
 **핵심은 네 가지:** 목적(웹 다이어리 · Vercel) · 보낼 것(title · content) · 주소 · 금고("환경변수로 설정할 거야").
 "환경변수로" 한마디에 AI 가 n8n 주소를 숨기는 안내데스크(`/api/diary`)를 알아서 만들어 줍니다.

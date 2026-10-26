@@ -15,9 +15,9 @@
 | ⚡ [REST Client Web](https://hackers-rest-client.vercel.app) | **강의 전용 웹 REST Client** — VS Code `.http` 문법 그대로, 설치·CORS 걱정 없이. ⚙️ 설정에 내 n8n 주소만 넣으면 예제 바로 실행 ([소스](https://github.com/joosung80/hackers-rest-client-web)) |
 | 📨 [`hoppscotch/`](hoppscotch/) | **Hoppscotch 컬렉션** — 강의 시나리오 7개를 브라우저 도구로 바로 Import (변수 2개만 바꾸면 끝) |
 | 📨 [`rest-client/`](rest-client/) | 웹훅에 JSON 을 보내는 파일 (`.http` · Mac/Linux `curl.sh` · Windows `curl.ps1`) |
-| 🚲 [`diary-simple/`](diary-simple/) | 2교시 웹 다이어리 **심플 버전** — 파일 2개 (HTML + Vercel 함수), Deploy 버튼 |
-| 🌐 [`diary-web/`](diary-web/) | 2교시 웹 다이어리 Next.js 버전 소스 |
-| 🤖 [`prompts/`](prompts/) | ChatGPT 에 붙여 넣는 **4~5문장 요청서** (심플 · Next.js) |
+| 🚲 [`diary-simple/`](diary-simple/) | 2교시 웹 다이어리 **심플 버전 (참고)** — Next.js 없이 파일 2개 (HTML + Vercel 함수) |
+| 🌐 [`diary-web/`](diary-web/) | 2교시 웹 다이어리 **Next.js 버전 (과제)** 소스 |
+| 🤖 [`prompts/`](prompts/) | ChatGPT 에 붙여 넣는 **4~5문장 요청서** (Next.js 과제용 · 심플 참고) |
 | 🖼️ [`images/`](images/) | 개념 그림 7장 + 정답 화면 |
 
 강의 웹페이지: **https://hackers-n8n-lecture.vercel.app**
