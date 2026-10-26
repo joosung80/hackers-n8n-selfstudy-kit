@@ -111,7 +111,6 @@ docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n
 ![정답 1](../images/answer1_webhook_output.jpg)
 
 **더 해 보기**
-- `words` 에 2개만 보내 보기 → `words 검증` 노드의 `isValid` 가 **false** 로
 - 오른쪽 위 **Publish** 후 **(2) 프로덕션 URL** 로 보내기 → **Executions** 탭에서 확인
 
 ### 🚧 자주 막히는 곳

@@ -13,13 +13,12 @@
 ## 01 · Webhook 초인종 — `01_webhook_words.json`
 
 ```
-[Webhook POST /hackers-words] → [words 검증]
+[Webhook POST /hackers-words]
 ```
 
 | 노드 | 하는 일 |
 |---|---|
-| **Webhook** | 초인종. POST 로 온 JSON 주문서를 받음 (Path `hackers-words`) |
-| **words 검증** (Edit Fields) | `words` 목록, 개수 `count`, 정확히 3개인지 `isValid` 를 계산 |
+| **Webhook** | 초인종. POST 로 온 JSON 주문서를 받아 OUTPUT 에 `body › words` 로 보여 줌 (Path `hackers-words`) |
 
 - 보내는 쪽: [`rest-client/webhook.http`](../rest-client/webhook.http)
 - Raw: `https://raw.githubusercontent.com/joosung80/hackers-n8n-selfstudy-kit/main/workflows/01_webhook_words.json`

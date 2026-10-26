@@ -19,42 +19,7 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "w1",
-              "name": "words",
-              "value": "={{ $json.body.words }}",
-              "type": "array"
-            },
-            {
-              "id": "w2",
-              "name": "count",
-              "value": "={{ $json.body.words.length }}",
-              "type": "number"
-            },
-            {
-              "id": "w3",
-              "name": "isValid",
-              "value": "={{ Array.isArray($json.body.words) && $json.body.words.length === 3 }}",
-              "type": "boolean"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        240,
-        0
-      ],
-      "id": "a1f0c001-0000-4000-8000-000000000002",
-      "name": "words 검증"
-    },
-    {
-      "parameters": {
-        "content": "## 🔔 01. Webhook 초인종\n\n**하는 일:** 다른 프로그램이 JSON 주문서를 POST 로 보내면 받아서 검사합니다.\n\n**따라하기**\n1. Webhook 노드 열기 → **Listen for test event**\n2. `webhook.http` 의 **Send Request** 클릭\n3. OUTPUT → Schema → `body › words` 확인\n\n**보낼 JSON**\n`{ \"words\": [\"고양이\", \"커피\", \"회의\"] }`",
+        "content": "## 🔔 01. Webhook 초인종\n\n**하는 일:** 다른 프로그램이 JSON 주문서를 POST 로 보내면 받아서 보여 줍니다.\n\n**따라하기**\n1. Webhook 노드 열기 → **Listen for test event**\n2. `webhook.http` 의 **Send Request** 클릭\n3. OUTPUT → Schema → `body › words` 확인\n\n**보낼 JSON**\n`{ \"words\": [\"고양이\", \"커피\", \"회의\"] }`",
         "height": 380,
         "width": 400,
         "color": 4
@@ -82,36 +47,9 @@
       ],
       "id": "01dc0560-69bf-52af-a878-0fafa1172ee0",
       "name": "설명 · Webhook"
-    },
-    {
-      "parameters": {
-        "content": "### ② words 검증 (Edit Fields)\n- `words` = 받은 목록\n- `count` = 개수\n- `isValid` = 정확히 3개면 **true**\n\n`{{ $json.body.words }}` → 봉투 속 내용(body)에서 words 꺼내기",
-        "height": 260,
-        "width": 260
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        220,
-        -300
-      ],
-      "id": "0566c5e5-c227-5052-bcc8-f98e3731e564",
-      "name": "설명 · words 검증"
     }
   ],
-  "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "words 검증",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    }
-  },
+  "connections": {},
   "settings": {
     "executionOrder": "v1"
   },
