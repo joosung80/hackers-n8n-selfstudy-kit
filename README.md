@@ -35,6 +35,14 @@
 
 > 파일로 받으려면: 각 파일 열기 → 오른쪽 위 **Download raw file** → n8n 에서 **⋯ → Import… → Import from file…**
 
+## 🎬 따라하기 영상 (빈 캔버스부터 완성까지)
+
+| 과제 | 영상 |
+|---|---|
+| 1 · Webhook 초인종 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/과제1-webhook-초인종.mp4 |
+| 2 · 웹 다이어리 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/과제2-웹다이어리.mp4 |
+| 3 · 뉴스 5개만 | https://hackers-n8n-lecture.vercel.app/step-videos/v2/과제3-뉴스5개.mp4 |
+
 ## 🧭 추천 학습 순서
 
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "01. Webhook 초인종 — words 받기",
+  "name": "[특강 1교시] Webhook words 수신",
   "nodes": [
     {
       "parameters": {

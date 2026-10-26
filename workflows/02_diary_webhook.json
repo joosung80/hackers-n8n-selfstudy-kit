@@ -1,5 +1,5 @@
 {
-  "name": "02. 웹 다이어리 수신 — Next.js API Route 연동",
+  "name": "[특강 2교시] 다이어리 Webhook 수신",
   "nodes": [
     {
       "parameters": {
